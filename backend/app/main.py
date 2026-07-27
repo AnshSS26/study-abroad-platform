@@ -14,20 +14,17 @@ from app.api.recommendation import router as recommendation_router
 from app.api.student import router as student_router
 
 
-# Create database tables
-#Base.metadata.create_all(bind=engine)
-
-
 app = FastAPI(
     title="Study Abroad Platform API"
 )
 
 
-# CORS for frontend connection
+# CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000"
+        "http://localhost:3000",
+        "https://YOUR_VERCEL_URL.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -38,7 +35,6 @@ app.add_middleware(
 # Register routes
 app.include_router(recommendation_router)
 app.include_router(student_router)
-
 
 
 @app.get("/")
