@@ -15,7 +15,7 @@ from app.api.student import router as student_router
 
 
 # Create database tables
-Base.metadata.create_all(bind=engine)
+#Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI(
