@@ -1,14 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.db.database import Base, engine
-
-# Import models
-from app.models.university import University
-from app.models.program import Program
-from app.models.admission_requirement import AdmissionRequirement
-from app.models.student import Student
-
 # Import APIs
 from app.api.recommendation import router as recommendation_router
 from app.api.student import router as student_router
@@ -23,10 +15,9 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-    "http://localhost:3000",
-    "https://*.vercel.app"
-],
+        "http://localhost:3000",
     ],
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
