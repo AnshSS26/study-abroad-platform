@@ -173,7 +173,7 @@ export default function Home() {
 
       const response = await fetch(
 
-        "http://127.0.0.1:8000/recommend",
+        "https://study-abroad-platform-lpbo.onrender.com/recommend",
 
         {
 
