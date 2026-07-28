@@ -1,15 +1,34 @@
+import os
+
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
+load_dotenv()
 
-# TEMP: disable database for MVP deployment
+DATABASE_URL = (
+    f"postgresql+psycopg://"
+    f"{os.getenv('DATABASE_USER')}:"
+    f"{os.getenv('DATABASE_PASSWORD')}@"
+    f"{os.getenv('DATABASE_HOST')}:"
+    f"{os.getenv('DATABASE_PORT')}/"
+    f"{os.getenv('DATABASE_NAME')}"
+)
 
-engine = None
+engine = create_engine(DATABASE_URL)
 
-SessionLocal = None
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
 
 Base = declarative_base()
 
 
 def get_db():
-    return None
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
