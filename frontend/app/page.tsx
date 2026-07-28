@@ -99,7 +99,7 @@ export default function Home() {
 
       const profileResponse = await fetch(
 
-        "http://127.0.0.1:8000/students",
+        "https://study-abroad-platform-lpbo.onrender.com/students",
 
         {
 
